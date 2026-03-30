@@ -5,6 +5,7 @@ tags: [教程]
 categories: [教程]
 copyright: BY
 author: Mowan Official
+sticky: 1000
 ---
 
 您可以通过[Markdown教程](https://markdown.com.cn/basic-syntax/)系统的学习该标记语言

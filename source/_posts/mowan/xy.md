@@ -23,7 +23,7 @@ author: GJY
 
 
 <div class="douyin">
-<iframe frameborder="0"  scrolling="no" src="https://open.douyin.com/player/video?vid=7528375994014846250&autoplay=0" referrerpolicy="unsafe-url" allowfullscreen></iframe>
+<iframe frameborder="0" scrolling="no" src="https://open.douyin.com/player/video?vid=7528375994014846250&autoplay=0" referrerpolicy="unsafe-url" allowfullscreen></iframe>
 </div>
 
 
@@ -33,7 +33,7 @@ author: GJY
 
 
 <div class="douyin">
-<iframe frameborder="0"  scrolling="no" src="https://open.douyin.com/player/video?vid=7610355590075247999&autoplay=0" referrerpolicy="unsafe-url" allowfullscreen></iframe>
+<iframe frameborder="0" scrolling="no" src="https://open.douyin.com/player/video?vid=7610355590075247999&autoplay=0" referrerpolicy="unsafe-url" allowfullscreen></iframe>
 </div>
 
 # TOP3
@@ -42,7 +42,7 @@ author: GJY
 
 
 <div class="douyin">
-<iframe frameborder="0"  scrolling="no" src="https://open.douyin.com/player/video?vid=7614454276605205418&autoplay=0" referrerpolicy="unsafe-url" allowfullscreen></iframe>
+<iframe frameborder="0" scrolling="no" src="https://open.douyin.com/player/video?vid=7614454276605205418&autoplay=0" referrerpolicy="unsafe-url" allowfullscreen></iframe>
 </div>
 
 # TOP4
@@ -51,7 +51,7 @@ author: GJY
 
 
 <div class="douyin">
-<iframe frameborder="0"  scrolling="no" src="https://open.douyin.com/player/video?vid=7591079124531202148&autoplay=0" referrerpolicy="unsafe-url" allowfullscreen></iframe>
+<iframe frameborder="0" scrolling="no" src="https://open.douyin.com/player/video?vid=7591079124531202148&autoplay=0" referrerpolicy="unsafe-url" allowfullscreen></iframe>
 </div>
 
 # TOP5
@@ -60,7 +60,7 @@ author: GJY
 
 
 <div class="douyin">
-<iframe frameborder="0"  scrolling="no" src="" referrerpolicy="unsafe-url" allowfullscreen></iframe>
+<iframe frameborder="0" scrolling="no" src="" referrerpolicy="unsafe-url" allowfullscreen></iframe>
 </div>
 
 # TOP6
@@ -69,7 +69,7 @@ author: GJY
 
 
 <div class="douyin">
-<iframe frameborder="0"  scrolling="no" src="" referrerpolicy="unsafe-url" allowfullscreen></iframe>
+<iframe frameborder="0" scrolling="no" src="" referrerpolicy="unsafe-url" allowfullscreen></iframe>
 </div>
 
 # TOP7
@@ -78,7 +78,7 @@ author: GJY
 
 
 <div class="douyin">
-<iframe frameborder="0"  scrolling="no" src="" referrerpolicy="unsafe-url" allowfullscreen></iframe>
+<iframe frameborder="0" scrolling="no" src="" referrerpolicy="unsafe-url" allowfullscreen></iframe>
 </div>
 
 # TOP8
@@ -87,7 +87,7 @@ author: GJY
 
 
 <div class="douyin">
-<iframe frameborder="0"  scrolling="no" src="" referrerpolicy="unsafe-url" allowfullscreen></iframe>
+<iframe frameborder="0" scrolling="no" src="" referrerpolicy="unsafe-url" allowfullscreen></iframe>
 </div>
 
 # TOP
@@ -96,7 +96,7 @@ author: GJY
 
 
 <div class="douyin">
-<iframe frameborder="0"  scrolling="no" src="" referrerpolicy="unsafe-url" allowfullscreen></iframe>
+<iframe frameborder="0" scrolling="no" src="" referrerpolicy="unsafe-url" allowfullscreen></iframe>
 </div>
 
 # TOP
@@ -105,5 +105,5 @@ author: GJY
 
 
 <div class="douyin">
-<iframe frameborder="0"  scrolling="no" src="" referrerpolicy="unsafe-url" allowfullscreen></iframe>
+<iframe frameborder="0" scrolling="no" src="" referrerpolicy="unsafe-url" allowfullscreen></iframe>
 </div>

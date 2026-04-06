@@ -98,20 +98,22 @@
 }
 
 
-/*.douyin{*/
-/*    width: 100%;*/
-/*    height: 672px;*/
-/*    margin-inline: auto;*/
-/*}*/
+.douyin{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
 
 
 
 .douyin {
     width: min(324px, 100%);
     margin-inline: auto;
-    overflow: hidden
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 .douyin iframe {
     aspect-ratio: .4821
 }
-

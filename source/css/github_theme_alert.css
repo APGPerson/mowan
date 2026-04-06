@@ -1,0 +1,117 @@
+/* 基础 alert 样式 */
+.alert {
+    padding: 1em !important;
+    margin: 1em 0;
+    border-radius: 4px;
+    position: relative;
+    display: block;
+}
+
+/* 确保 alert 样式不会被 blockquote 样式覆盖 */
+.alert.content blockquote,
+.content .alert {
+    border-left: 6px solid #0078d4 !important;
+    padding: 2em 3em 2em 2em;
+    margin: 1em 0;
+    border-radius: 0;
+}
+
+/* 添加标题前的图标和文本 */
+.alert::before {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    display: block;
+    font-family:  "Font Awesome 5 Free","sans-serif";
+}
+
+/* 各种 alert 变体 */
+.alert-note {
+    border-color: #0078d4 !important;
+    background-color: var(--board-bg-color) !important;
+}
+.alert-note::before {
+    content: "\f05a  附注";
+    color: #0078d4;
+}
+
+.alert-warning {
+    border-color: #e0a800 !important;
+    background-color: var(--board-bg-color) !important;
+}
+.alert-warning::before {
+    content: "\f071  警告";
+    color: #e0a800;
+}
+
+.alert-tip {
+    border-color: #28a745 !important;
+    background-color: var(--board-bg-color) !important;
+}
+.alert-tip::before {
+    content: "\f0eb  提示";
+    color: #28a745;
+}
+
+.alert-important {
+    border-color: #d63384 !important;
+    background-color: var(--board-bg-color) !important;
+}
+.alert-important::before {
+    content: "\f06a  重要";
+    color: #d63384;
+}
+
+.alert-caution {
+    border-color: #fd7e14 !important;
+    background-color: var(--board-bg-color) !important;
+}
+.alert-caution::before {
+    content: "\f06d  注意";
+    color: #fd7e14;
+}
+
+.alert-info {
+    border-color: #17a2b8 !important;
+    background-color: var(--board-bg-color) !important;
+}
+.alert-info::before {
+    content: "\f129  信息";
+    color: #17a2b8;
+}
+
+.alert-success {
+    border-color: #28a745 !important;
+    background-color: var(--board-bg-color) !important;
+}
+.alert-success::before {
+    content: "\f00c  成功";
+    color: #28a745;
+}
+
+.alert-error {
+    border-color: #dc3545 !important;
+    background-color: var(--board-bg-color) !important;
+}
+.alert-error::before {
+    content: "\f00d  错误";
+    color: #dc3545;
+}
+
+
+/*.douyin{*/
+/*    width: 100%;*/
+/*    height: 672px;*/
+/*    margin-inline: auto;*/
+/*}*/
+
+
+
+.douyin {
+    width: min(324px, 100%);
+    margin-inline: auto;
+    overflow: hidden
+}
+.douyin iframe {
+    aspect-ratio: .4821
+}
+

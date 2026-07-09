@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>魔丸社考试院查分平台</title>
+     
+    <link rel="stylesheet" href="./css/logincj.css">  
+    <link rel="stylesheet" href="./css/layer.css">    
+    
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/layer.js"></script>
+    <!-- 重写layui弹出窗的宽高 -->
+    <style>
+    
+    .layui-m-layercont{
+    	width:100%;
+    	height:100%;
+    	padding:40px 0px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container" style="background: url(./images/diwen.png);background-size: contain;">
+	    <div class="container">
+	        <div class="main-box">
+	            <div class="main-bg-box">
+	                <div class="main-text">
+	                    <p id="sysTitle1"></p>
+	                    <p id="sysTitle2"></p>
+	                </div>
+	            </div>
+	
+				<div class="infoBox">
+					<div class="boxTitle">考生信息</div>
+					<div class="infoTableBox">
+						<table class="userInfoTable">
+							<tbody>
+								<tr>
+									<td class="itemText" id="ipt_ksh">考生号：</td>
+									<td class="itemval"><span id="zkzh"></span></td>
+								</tr>
+								<tr>
+									<td class="itemText">考生姓名：</td>
+									<td class="itemval"><span id="xm"></span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="imgBox">
+						<img src="" alt="" class="imgEwm" id="img">
+					</div>
+				</div>
+				<div class="infoBox">
+					<div class="boxTitle">成绩信息</div>
+					<div class="forms-group">
+						<table class="infoTable">
+							<thead>
+								<tr id="infotr">
+									<td>科目</td>
+									<td>分数</td>
+								</tr>
+							</thead>
+							<tbody id="infobody">
+							</tbody>
+						</table>
+					</div>
+					
+					<label class="form-label" id="alertInfo" style="display: none; text-align: center;">
+						<span class="color-red"></span>
+					</label>					
+					<label class="form-label" id="fuheInfo" style="display: none;">
+						<span class="color-red">如果对于成绩有异议，请点击下方“复核申请”按钮</span>
+					</label>
+					<div class="btns-group" id="fuheButton" style="display: none;">
+	                	<button type="button" class="btn btn-login" onclick="fuheshenqing()">复核申请</button>
+	                </div>
+				</div>
+			</div>
+	    </div>
+    </div>
+    <!-- 阴影区域 -->
+    <div id="cf_layer" class="layer"></div>
+    <!-- 图片区域 -->
+    <div id="cf_imgdiv" class="imgModelContent">
+        <span class="closeWindow" id="cf_close">X</span>
+        <div class="imgBox">
+<!--             <img src="https://picsum.photos/1200/800"> -->
+			<img id="cf_img"/>
+        </div>
+    </div>
+</body>
+<script src="./js/common.js"></script>
+<script src="./js/cf.js"></script>
+<script type="text/javascript">
+
+</script>
+</html>

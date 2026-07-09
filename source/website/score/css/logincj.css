@@ -1,0 +1,1207 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+}
+
+i {
+    font-style: normal;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+li {
+    list-style: none;
+}
+
+.color-red {
+    color: #E03B4F !important;
+}
+
+
+.header {
+    background-color: #FFFFFF;
+}
+
+/* 閼存瑥鈻岄懘妤佸珴閼存瀚濋懘娆忊枌閼存浼ｉ懘妤咁暘閼存瑦瀚濋懞鎺楀灳濮ｎ剦鍎埗鈺佷壕閹哄疇鍓诲Δ鑹板壒閻愬鍓规惔鎰壔閻愬鍓规す纾嬪壒闂勫棜鍓绘繛鍕壒妞圭鍓规惔鎰壔閻愬鍓规す纾嬪壒闂勶拷 */
+h1.main-title {
+    font-size: 0.32rem;
+    color: #000;
+    text-align: center;
+    padding: 0.2rem 0;
+}
+
+img.index-bg-img {
+    width: 100%;
+    display: block;
+}
+
+.form-box {
+    padding: 0.1rem 0.7rem;
+    text-align: center;
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 0.2rem;
+    width: 100%;
+    font-size: 0;
+}
+
+
+
+.myInput {
+    display: block;
+    width: 100%;
+    border: none;
+    font-size: 0.28rem;
+    padding: 0.3rem 0;
+    padding-left: 0.5rem;
+    border-bottom: 0.01rem solid #D8D8D8;
+}
+.dxyzm .myInput{
+    width:60%;
+}
+button.sendBtn{
+    position: absolute;
+    width: 35%;
+    height: 100%;
+    right: 0;
+    bottom: 0;
+    font-size: 0.26rem;
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    border: none;
+    border-radius: 0.1rem;
+}
+span.wenhao{
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    font-size: 0.3rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: #498ecb;
+    color: #fff;
+    border-radius: 50%;
+    line-height: 0.5rem;
+    text-align: center;
+}
+.myTs {
+    display: block;
+    width: 100%;
+    border: none;
+    font-size: 0.28rem;
+    padding: 0.3rem 0;
+    padding-left: 0.5rem;
+}
+
+i.icon {
+    background-size: cover !important;
+    width: 0.3rem;
+    height: 0.3rem;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -0.18rem;
+}
+
+/*******閼存瑦绱￠懘妤勪紓閼存鎮呴懘娆戠槵閼存鍊濋懘妤勬閼存瑦鎮呴懘妤呮苟閼存浠归懘娆愮础閼存浼傞懘妤佸珴閼存瑦銈奸懘妤勬閼烘帡鍩�椤戠姳绠欓崗鐔氬啿浼勯惌顐紕閹冲﹤鍘介埞鐔蜂紕瀹撴粌浼勯妷鍐ㄥ幗椤檧鎳囬崑鎾村閼存宕查懘娆愭倕閼达綁鍨鹃悩鍡椾紕閿燂拷*****/
+i.icon_bmh {
+    background: url(../images/icon_bmh.png) no-repeat;
+}
+
+i.icon_email {
+    background: url(../images/icon_email.png) no-repeat;
+}
+
+i.icon_ksh {
+    background: url(../images/icon_ksh.png) no-repeat;
+}
+i.icon_zkzh {
+    background: url(../images/icon_zkzh.png) no-repeat;
+}
+
+i.icon_ksbh {
+    background: url(../images/icon_ksh.png) no-repeat;
+}
+
+i.icon_sfzh {
+    background: url(../images/icon_sfzh.png) no-repeat;
+}
+
+i.icon_sjhm {
+    background: url(../images/icon_sjhm.png) no-repeat;
+}
+
+i.icon_cjsjhm {
+    background: url(../images/icon_cjsjhm.png) no-repeat;
+}
+
+i.icon_xm {
+    background: url(../images/icon_xm.png) no-repeat;
+}
+
+i.icon_yzm {
+    background: url(../images/icon_yzm.png) no-repeat;
+}
+
+i.icon_txyzm {
+    background: url(../images/icon_txyzm.png) no-repeat;
+}
+i.icon_dxyzm {
+    background: url(../images/icon_dxyzm.png) no-repeat;
+}
+
+i.icon_zjhm {
+    background: url(../images/icon_zjhm.png) no-repeat;
+}
+
+i.icon_mm {
+    background: url(../images/icon_mm.png) no-repeat;
+}
+
+i.icon_zwh {
+    background: url(../images/icon_zwh.png) no-repeat;
+}
+
+img.yzm-img {
+    position: absolute;
+    width: 35%;
+    height: 100%;
+    right: 0;
+    bottom: 0;
+}
+
+/*******閼存瑦绱￠懘妤勪紓閼存鎮呴懘娆戠槵閼存鍊濋懘妤勬閼存瑦鎮呴懘妤呮苟閼存浠归懘娆愮础閼存浼傞懘妤佸珴閼存瑦銈奸懘妤勬閼烘帡鍩�椤戠姳绠欓崗鐔氬啿浼勯惌顐紕閹冲﹤鍘介埞鐔蜂紕瀹撴粌浼勯妷鍐ㄥ幗椤檧鎳囬崑鎾村閼存宕查懘娆愭倕閼达綁鍨鹃悩鍡椾紕閿涳絽鍘介‖鈥充紕濞村骸浼勬导鍗炲幗绾埗鈺佷壕闁斥斁鎸岄崑顔炬煏閸忕啔鍐蹭紕閻偄浼勯敓锟�*****/
+
+.btns-group {
+    padding: 0.1rem 0.7rem;
+    margin: 0.2rem 0;
+    margin-top: 0.4rem;
+}
+
+button.btn-login {
+    width: 100%;
+    height: 0.86rem;
+    background: #5F91FD;
+    box-shadow: 0px 0.02rem 0.12rem 0px rgba(34, 79, 167, 0.58);
+    border-radius: 0.43rem;
+    font-size: 0.3rem;
+    font-family: PingFang-SC-Regular, PingFang-SC;
+    font-weight: 400;
+    color: #FFFFFF;
+    border: none;
+    display: block;
+}
+
+.form-box {
+    margin-top: 0.3rem;
+}
+
+.yzm .myInput {
+    width: 60%;
+}
+
+/* 閼存瑥鈻岄懘妤佸珴閼存瀚濋懘娆忊枌閼存浼ｉ懘妤咁暘閼存瑦瀚濋懞鎺楀灳濮ｎ剦鍎埗鈺佷壕閹哄疇鍓婚幖鍌濆壒瑜版洝鍓归懕娑滃壔婵炲嫯濮冮柍褜鍏橀崝澶庡壒妤规捁鍓绘繛鍕壒闂勫棜鍓归懞锟� */
+
+
+/* 閼存瑥鈻岄懘妤呪攼閼烘帡鍩�椤戞繃鍣撮崗鐕佸晹閳垛晛浜鹃幏褑鍓归崹鍕壔濡よ壈濮冮柍褜鍎╅埛姘ｆ噰閸嬫捁澧懘娆忊枌閼存鐭鹃懞鎺楀焵椤戞績鍩楅崗鐔叉寣閳垛晛浜鹃崯顏囧妰闁炽儲顏崗鐔翠化閸嬵喗绁归埗鈺佷壕婵炲嫯鍓诲Δ鑹板壒閻愬鍓规惔鎰壔閻愬鍓规す纾嬪壒闂勫棜鍓绘繛鍕壒妞圭鍓规惔鎰壔閻愬鍓规す纾嬪壒闂勶拷 */
+.main-bg-box {
+    width: 100%;
+    height: 2.20rem;
+   	background: url(../images/projectListBg.png) no-repeat;
+    background-size: cover; 
+    position: relative;
+}
+
+.user-info {
+    width: 100%;
+    padding: 0.2rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #D9E6FF;
+    font-size: 0;
+}
+
+.user-info ul li {
+    display: inline-block;
+    margin-right: 0.3rem;
+    font-size: 0;
+}
+
+.user-info ul li:last-child {
+    margin-right: 0;
+}
+
+.user-info ul li span {
+    font-size: 0.26rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #5F91FD;
+}
+
+.main-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 0.5rem;
+}
+
+.main-text p {
+    font-size: 0.34rem;
+    font-family: PingFang-SC-Bold, PingFang-SC;
+    font-weight: bold;
+   /*  color: #FFFFFF;
+    text-shadow: 0px 0.02rem 0.04rem #5163B4; */
+        color: #107bef;
+}
+
+.forms-group {
+    padding: 0.3rem;
+}
+
+.form-label {
+    font-size: 0.28rem;
+    font-family: PingFang-SC-Medium, PingFang-SC;
+    font-weight: bold;
+    color: #323232;
+    display: block;
+    margin-bottom: 0.15rem;
+}
+
+.form-control {
+    height: 0.8rem;
+    background: #FFFFFF;
+    border: 1px solid #C5C5C5;
+    font-size: 0.24rem;
+    color: #999999;
+    padding: 0 0.2rem;
+    width: 100%;
+}
+
+.item-type {
+    font-size: 0.22rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #9A9A9A;
+}
+
+.msg-type {
+    font-size: 0.28rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #3258C8;
+}
+
+.radio-box {
+    margin: 0.15rem 0;
+    width: 100%;
+    padding: 0 0.2rem;
+}
+
+.radio-box label {
+    float: left;
+    font-size: 0.26rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #323232;
+}
+
+.radio-box input[type="radio"] {
+    float: right;
+    width: 0.3rem;
+    height: 0.3rem;
+}
+
+.radio-box::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.check-box {
+    margin: 0.15rem 0;
+    width: 100%;
+    padding: 0 0.2rem;
+}
+
+.check-box label {
+    float: left;
+    font-size: 0.26rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #323232;
+}
+
+.check-box input[type="checkbox"] {
+    float: right;
+    width: 0.3rem;
+    height: 0.3rem;
+}
+
+.check-box::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.textarea-box {}
+
+.myTextarea {
+    height: 1.9rem;
+    background: #FFFFFF;
+    border: 1px solid #C5C5C5;
+    padding: 0.18rem;
+    font-size: 0.24rem;
+    width: 100%;
+    display: block;
+}
+
+.myTextarea.city-box {
+    height: 0.8rem;
+}
+
+.checkbox-box {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0.2rem;
+}
+
+.checkbox-box input[type="checkbox"] {
+    width: 0.3rem;
+    height: 0.3rem;
+    margin-right: 0.1rem;
+    margin-top: 0.05rem;
+}
+
+.checkbox-box label {
+    font-size: 0.2rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #565656;
+    flex: 1;
+}
+
+.yzm-box {
+    position: relative;
+}
+
+.forms-group .yzm {
+    margin-top: 0.3rem;
+}
+
+/* 閼存瑦绱￠懘婊堟閼存顩╅懘娆忊枌閼烘帡鍩�椤戠姳绠欓崑顕咃拷銏犲幗绾崑顔藉櫞閸嬵噯鎷� */
+.state-box {}
+
+.state-box .img-box {
+    text-align: center;
+    padding: 0.3rem 0;
+    margin-top: 0.8rem;
+}
+
+.state-box .img-box img {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    margin: auto;
+}
+
+p.state-text {
+    font-size: 0.32rem;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: bold;
+    color: #2D2D2D;
+    margin: 0.1rem 0;
+    text-align: center;
+}
+
+p.shuoming-item {
+    font-size: 0.28rem;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: normal;
+    color: #2D2D2D;
+    margin: 0.1rem 0;
+    text-align: left;
+}
+
+p.project-name1 {
+    display: block;
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.50rem;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+p.project-name2 {
+    display: block;
+    position: absolute;
+    top: 1.1rem;
+    left: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.50rem;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+p.project-name3 {
+    display: block;
+    position: absolute;
+    top: 1.7rem;
+    left: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.50rem;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+a.text-again {
+    display: block;
+    text-align: center;
+    font-size: 0.25rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #326CE7;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    text-decoration: none;
+}
+
+button.btn-close {
+    border-radius: 43px;
+    border: 1px solid #979797;
+    width: 100%;
+    height: 0.86rem;
+    background: #FFFFFF;
+    display: block;
+    font-size: 0.3rem;
+    font-family: PingFang-SC-Regular, PingFang-SC;
+    font-weight: 400;
+    color: #565656;
+    margin-bottom: 0.45rem;
+}
+button.btn-open {
+    border-radius: 43px;
+    border: 1px solid #00ffff;
+    width: 100%;
+    height: 0.86rem;
+    background: #FFFFFF;
+    display: block;
+    font-size: 0.3rem;
+    font-family: PingFang-SC-Regular, PingFang-SC;
+    font-weight: 400;
+    color: #0000ff;
+    margin-bottom: 0.45rem;
+}
+
+.infoTable {
+    width: 100%;
+    border-top: 1px solid #C5C5C5;
+    border-left: 1px solid #C5C5C5;
+    border-collapse: collapse;
+    letter-spacing: 0;
+}
+
+.infoTable td {
+    font-size: 0.2rem;
+    text-align: center;
+    padding: 0.1rem;
+    border-bottom: 1px solid #C5C5C5;
+    border-right: 1px solid #C5C5C5;
+}
+
+.infoTable thead td {
+    padding: 0.15rem;
+    font-weight: bold;
+    font-size: 0.22rem;
+}
+
+.tableTitle {
+    font-size: 0.24rem;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 0.05rem;
+}
+
+.info-text {
+    font-weight: normal;
+    font-size: 0.24rem;
+}
+
+.uploadBtn {
+    font-size: 0.24rem;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+.uploadInput {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.infoText {
+    font-size: 0.3rem;
+    font-weight: bold;
+}
+
+.infoText b {
+    font-size: 0.3rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.imgList::after {
+    display: table;
+    content: '';
+    clear: both;
+}
+
+.imgItem {
+    position: relative;
+    height: 1.5rem;
+    display: inline-block;
+    margin-right: 0.05rem;
+    width: calc(25% - 0.1rem);
+    background: #FFFFFF;
+    border: 1px solid #C5C5C5;
+    padding: 0.1rem;
+    float: left;
+    text-align: center;
+    margin-bottom: 0.05rem;
+}
+
+.imgItem:last-child {
+    margin-right: 0
+}
+
+.imgItem img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.showorhidecode {
+    display: none;
+}
+.showorhidesfgl {
+    display: none;
+}
+.showorhidegtjz {
+    display: none;
+}
+
+.showorhidestar {
+    display: none;
+}
+
+.showorhidesfgt {
+    display: none;
+}
+
+.showorhidesfam {
+    display: none;
+}
+
+.showorhidesfjw {
+    display: none;
+}
+
+.showorhidesfgc {
+    display: none;
+}
+.showorhidebzyy {
+    display: none;
+}
+
+.uploadImg {
+    display: none;
+}
+
+div.imgItem {
+    margin-right: 0.2rem;
+    width: calc(25% - 0.2rem);
+}
+
+.imgItem:last-child {
+    margin-right: 0
+}
+
+span.del {
+    width: 0.3rem;
+    height: 0.3rem;
+    display: block;
+    position: absolute;
+    right: -0.1rem;
+    top: -0.13rem;
+    background: url(../images/delete.png) no-repeat;
+    cursor: pointer;
+    z-index: 1;
+    background-size: cover;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 閼存瑥鈻岄懘妤呮閼存妾遍懘娆愩偧閼存粓鍨惧┃宥呬紕椤掔厧鍘界含閸嬵喚鏌曢崑顔藉櫞閸忕啿鏁撻埗鈺佷壕闁炽儲绨崑顕呭�嬮崗鐔村剭閸嬵喓浠埗鈺佷壕妤ｈ儻鍓诲Δ鑹板壒閼猴箒鍓圭弧鎾瑰壔婵炲嫯鍓归梽鍥壒闂勫洩鍓婚幖鍌濆闁逞屽劑濠㈡繂浼勭拠銉ュ幗绾崑顔剧叓閸嬵喗鍣撮崗鐔叉晸閸嬵喖绶烽埗鈺佷壕閹费嗗壔婵炲嫯鍓归懕楦垮壒妞圭鍓绘惔鎰闁逞屽厴閿熻姤绨崱蹇ユ嫹濞咁厼鍘介妷鍐ㄤ紕椤曠浼勯姘幗椤曠浼勫Λ闈涗紕閻偄鍘界含閸嬵喗锛曢崑顕呭晹閸忕噥鍤崑顔斤紩閸嬵噯鎷� 1201 */
+.index-text-box {
+    font-size: 0;
+    position: absolute;
+    left: 0.3rem;
+    top: 0.75rem;
+}
+
+.index-text-box p.mainTitle {
+    font-size: 0.35rem;
+    font-weight: bold;
+    color: #333333;
+}
+
+.index-text-box p.subTitle {
+    padding: 0.06rem 0.1rem;
+    background: #C60000;
+    color: #fff;
+    font-size: 0.28rem;
+    font-weight: bold;
+    margin: 0.18rem 0;
+    display: inline-block;
+}
+
+.index-text-box p.noticeText {
+    font-size: 0.2rem;
+    color: #333333;
+}
+
+h2.contentTitle {
+    font-size: 0.32rem;
+    color: #333333;
+    padding-left: 0.25rem;
+    position: relative;
+    margin: 0.3rem 0;
+}
+
+h2.contentTitle::before {
+    content: '';
+    display: block;
+    width: 0.08rem;
+    height: 0.32rem;
+    background: #5F91FD;
+    border-radius: 0.05rem;
+    position: absolute;
+    left: 0;
+    margin-top: 0.06rem;
+}
+
+.projectListContent {
+    padding: 0 0.3rem;
+    position: relative;
+    z-index: 999;
+}
+
+.projectList {
+    margin: auto;
+    background: #FFFFFF;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.projectItem {
+    width: 100%;
+    padding: 0.4rem 0.3rem;
+    position: relative;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 0.12rem 0px rgb(0 0 0 / 12%), 0px 0px 0.04rem 0px rgb(0 0 0 / 4%);
+    border-radius: 2px;
+    margin-bottom: 0.2rem;
+}
+
+.iconBox {
+    width: 1.06rem;
+    text-align: center;
+}
+
+.itemIcon {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    background-size: cover;
+    margin: auto;
+}
+
+.itemIcon1 {
+    display: block;
+    width: 0.92rem;
+    height: 0.8rem;
+    background: url(../images/item1.png) no-repeat;
+    background-size: cover;
+    margin: auto;
+}
+
+.itemIcon2 {
+    width: 0.98rem;
+    height: 0.75rem;
+    background-image: url(../images/item2.png);
+}
+
+.itemIcon3 {
+    width: 1.06rem;
+    height: 0.8rem;
+    background-image: url(../images/item3.png);
+}
+
+.itemIcon4 {
+    width: 0.78rem;
+    height: 0.81rem;
+    background-image: url(../images/item4.png);
+}
+
+.itemIcon5 {
+    width: 0.94rem;
+    height: 0.94rem;
+    background-image: url(../images/item5.png);
+}
+
+.itemIcon6 {
+    width: 0.99rem;
+    height: 0.74rem;
+    background-image: url(../images/item6.png);
+}
+
+.itemIcon7 {
+    width: 0.92rem;
+    height: 0.90rem;
+    background-image: url(../images/item7.png);
+}
+
+.itemIcon8 {
+    width: 0.97rem;
+    height: 0.94rem;
+    background-image: url(../images/item8.png);
+}
+
+.itemIcon9 {
+    width: 0.98rem;
+    height: 0.94rem;
+    background-image: url(../images/item9.png);
+}
+
+.itemContent {
+    display: flex;
+    align-items: center;
+    margin-top: 0.1rem;
+}
+
+.textBox {
+    margin-left: 0.3rem;
+}
+
+.textBox p.bigText {
+    font-size: 0.28rem;
+    color: #343434;
+    font-weight: bold;
+}
+
+.textBox p.smallText {
+    font-size: 0.21rem;
+    color: #999;
+    margin-top: 0.1rem;
+}
+
+.stateBox {
+    width: 1.47rem;
+    height: 0.36rem;
+    line-height: 0.33rem;
+    font-size: 0.21rem;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: url(../images/state.png) no-repeat;
+    background-size: cover;
+}
+
+.stateBox.state2 {
+    background-image: url(../images/state2.png);
+    color: #FF8333;
+}
+
+.stateBox.state3 {
+    background-image: url(../images/state3.png);
+}
+
+.index-bg-box {
+    position: relative;
+}
+
+/* 閼存瑥鈻岄懘妤呮閼存妾遍懘娆愩偧閼存粓鍨惧┃宥呬紕椤掔厧鍘界含閸嬵喚鏌曢崑顔藉櫞閸忕啿鏁撻埗鈺佷壕闁炽儲绨崑顕呭�嬮崗鐔村剭閸嬵喓浠埗鈺佷壕妤ｈ儻鍓诲Δ鑹板壒閼猴箒鍓圭弧鎾瑰壔婵炲嫯鍓归梽鍥壒闂勫洩鍓婚幖鍌濆闁逞屽劑濠㈡繂浼勭拠銉ュ幗绾崑顔剧叓閸嬵喗鍣撮崗鐔叉晸閸嬵喖绶烽埗鈺佷壕閹费嗗壔婵炲嫯鍓归懕楦垮壒妞圭鍓绘惔鎰闁逞屽厴閿熻姤绨崱蹇ユ嫹濞咁厼鍘介‖鈥充紕濞村骸浼勬导鍗炲幗绾埗鈺佷壕闁斥斁鎸岄崑顔炬煏閸忕啔鍐蹭紕閻偄浼勯敓锟� */
+@media (min-width: 1200px) {
+
+    html,
+    body {
+        height: 100%;
+        width: 500px;
+        margin: auto;
+        font-size: 60px !important;
+    }
+}
+
+
+
+/* 閼存瑦绱￠懞鎺楀焵椤戞枻鎷峰婵冩噰閸嬫挸鏆橀懘娆愩偧閼烘帡鍩�椤戞繂顫栭崑顕咃拷銏犲幗绾崑顕呭劒閸嬵喒鎸岄崗鐔氬啿浼勯惈鍏夋噰閸嬫捁澧懘娆愩偧閼存宕查懘妤咁暘閼存瑥鈻岄懘妤冾暠閼烘帡鍩�椤戞績鍩楅崗鐔氬啿浼勯妵锝呬紕閵囷絽鍘介埞鐔蜂紕濠㈡績鎳囬崑鎾寸稏閼存瑦鎮呴懘妤呯氨閼烘帡鍩�椤戯附绨崗鐔氬啿浼勫Λ闈涗紕椤旀艾鍘介绋夸紕濡潧浼勯敓锟� */
+
+
+.infoBox {
+    padding: 0 0.3rem;
+}
+
+.boxTitle {
+    font-size: 0.32rem;
+    padding: 0.15rem 0;
+    color: #3B98FC;
+    font-weight: bold;
+    border-bottom: 0.02rem solid #3B98FC;
+}
+
+.userInfoTable {
+    width: 100%;
+
+}
+
+.userInfoTable td {
+    font-size: 0.23rem;
+    padding: 0.1rem;
+}
+
+.userInfoTable td.itemText {
+    text-align: right;
+    font-weight: bold;
+}
+
+.userInfoTable td.itemTextLeft {
+    text-align: left;
+    font-weight: bold;
+}
+
+.imgEwm {
+    display: block;
+    width: 4rem;
+    margin: 0.3rem auto;
+}
+
+.infoTableBox {
+    margin: 0.2rem;
+}
+/* 閼存瑦绱￠懞鎺楀焵椤戞枻鎷峰婵冩噰閸嬫挸鏆橀懘娆愩偧閼烘帡鍩�椤戞繂顫栭崑顕咃拷銏犲幗绾崑顕呭劒閸嬵喒鎸岄崗鐔氬啿浼勯惈鍏夋噰閸嬫捁澧懘娆愩偧閼存宕查懘妤咁暘閼存瑥鈻岄懘妤冾暠閼烘帡鍩�椤戞績鍩楅崗鐔氬啿浼勯妵锝呬紕閵囷絽鍘介‖鈾�鎳囬崑鎾逛紲閼存顣遍懘娆愭倕閼存妾归懘妤冪槵閼存瑦绱￠懘妤勪紑閼烘帡鍩�椤戞繃鍣撮崗鐕佸毇閸嬵喗锛曢崑顕嗘嫹 */
+
+
+/* 閼存瑦绱￠懞鎺楀焵椤戯附绨崑顔藉櫞閸忕喆鍎嶉埗鈺佷壕閼卞�熷壒妫板懓鍓婚幖鍌濆妸閼规瑨鍓归悙澶庡壔婵炲嫯鍓归梽鍥壒闂勫洩鍓荤弧鎾瑰壒閼毖嗗壒闂勫洩鍓婚幖鍌濆闁逞屽劑绾崑顔瑰煑閸忕喆鍎嶉崑顕呭毇閸嬵噮鍟旈崗鐕佸毇閸嬵喗锛曢崑顔剧叓閸忕啔鍐蹭紕濡潧浼勯姘幗椤曠浼勫Λ闈涗紕閿燂拷 */
+.modalContent {
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 0;
+    display: none;
+}
+
+.noticeBox {
+    padding: 0.3rem;
+}
+
+.noticeBox .mainTitle {
+    font-size: 0;
+    text-align: center;
+    margin: 0.3rem 0;
+    line-height: 0.45rem;
+}
+
+.noticeBox .mainTitle span {
+    display: block;
+    font-size: 0.32rem;
+    font-weight: 800;
+    color: #323232;
+}
+
+.noticeText {
+    font-size: 0;
+    margin-top: 0.6rem;
+}
+
+.noticeText p {
+    font-size: 0.28rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #666666;
+    margin-bottom: 0.3rem;
+    text-indent: 2em;
+    line-height: 0.45rem;
+}
+
+.noticeText p.rightText {
+    text-align: right;
+    margin-bottom: 0;
+}
+
+
+.formBox {
+    font-size: 0;
+    margin: 0.5rem 0;
+}
+
+.formBox label.myLabel {
+    color: #666666;
+    font-weight: 400;
+    font-size: 0.23rem;
+}
+
+.formBox label.myLabel a {
+    color: #1178B3;
+    margin: 0 0.05rem;
+}
+/* 閼存瑦绱￠懞鎺楀焵椤戯附绨崑顔藉櫞閸忕喆鍎嶉埗鈺佷壕閼卞�熷壒妫板懓鍓婚幖鍌濆妸閼规瑨鍓归悙澶庡壔婵炲嫯鍓归梽鍥壒闂勫洩鍓荤弧鎾瑰壒閼毖嗗壒闂勫洩鍓婚幖鍌濆闁逞屽劑绾崑顔瑰煑閸忕噥鐏愰崑顔界ス閸嬵喕鎬ラ崗鐔氭枼鎳囬崑鎾诲焺閳锋艾浼勯悿闈涘幗绾崑顔剧叓閸嬵噯鎷� */
+
+
+/* 閼存瑦绱￠懘妤勪紑閼烘帡鍨惧В顒夊劒閸忕噥鍟旂�Ｑ嶆嫹閻樺棌鎳囬敓鐣屼紲閳锋艾鍘介‖鈥充紕鐟佷礁浼勯绋垮幗閳圭喎浼勯幆宄颁紕閿涳絽鍘介妷鍐ㄤ紕鐟佷讲鎳囬崑鎾虫殬閼存瑥鈻岄懘妤呮閼存骞婇懘娆愮础閼存浼傞懘妤佺础閼存瑦鎮呴懘妤冪槵閼存鈹愰懘娆愩偧閼存浼�閼存鎮呴懘娆愩偧閼存鍊濋懘妤�绨懘娆戝�濋懘妤呪攼閼存妾伴懘娆忊枌閼存鈹愰懘妤�绨懘娆戝�濋懘妤呪攼閼存妾� */
+.notice-box {
+    font-size: 0;
+    display: flex;
+    padding: 0.3rem;
+}
+
+.notice-text p {
+    font-size: 0.2rem;
+    color: #FF3B30;
+}
+
+i.icon-notice {
+    width: 0.15rem;
+    height: 0.19rem;
+    background: url(../images/notice.png) no-repeat;
+    background-size: 100% 100%;
+    margin-right: 0.1rem;
+    margin-top: 0.03rem;
+}
+
+.container {
+    /* position: relative; */
+}
+
+.layer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .3);
+}
+
+.modelBox {
+    position: absolute;
+    width: 75%;
+    height: 45%;
+    background: #fff;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 999;
+    font-size: 14px;
+}
+
+.modelTitle {
+    cursor: move;
+    padding: 0 0.8rem 0 0.2rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    border-bottom: 1px solid #F0F0F0;
+    font-size: 0.23rem;
+    color: #333;
+    overflow: hidden;
+    border-radius: 0.0.2rem 0.02rem 0 0;
+}
+
+.modelContent {
+    position: relative;
+    padding: 0.2rem;
+    word-break: break-all;
+    overflow: hidden;
+    font-size: 0.23rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.modelContent .notice-text{
+    margin-top: 0.2rem;
+}
+.modelContent .notice-text p {
+    font-size: 0.25rem;
+    margin-bottom: 0.1rem;
+    text-align: center;
+}
+
+.modelContent .btns-group {
+    text-align: center;
+    padding: 0;
+}
+button:hover{
+    opacity: 0.8;
+}
+.modelContent .btns-group button {
+    margin-right: 0.1rem;
+    padding: 0.1rem 0.18rem;
+    border: 1px solid #dedede;
+    background-color: #fff;
+    color: #333;
+    border-radius: 0.02rem;
+    cursor: pointer;
+    font-size: 0.23rem;
+}
+
+.modelContent .btns-group button:last-child{
+    margin-right: 0;
+}
+
+.modelContent .btns-group button.btn-finish {
+    border-color: #1E9FFF;
+    background-color: #1E9FFF;
+    color: #fff;
+}
+/* 閼存瑦绱￠懘妤勪紑閼烘帡鍨惧В顒夊劒閸忕噥鍟旂�Ｑ嶆嫹閻樺棌鎳囬敓鐣屼紲閳锋艾鍘介‖鈥充紕鐟佷礁浼勯绋垮幗閳圭喎浼勯幆宄颁紕閿涳絽鍘介妷鍐ㄤ紕鐟佷讲鎳囬崑鎾虫殬閼存瑥鈻岄懘妤呮閼存骞婇懘娆愮础閼存浼傞懘妤佺础閼存瑦鎮呴懘妤冪槵閼存鈹愰懘娆愩偧閼存浼�閼存鎮呴懘娆愭倕閼存缍嶉懘妤勪粶閼存瑥鈻岄懞鎺楀焵椤戣棄濡烽懘妤呯氨閼存瑥鈻岄懘妤呮閼存濮� */
+
+/* 閼存瑦绱￠懘婊堟閼存绨遍懘娆忊枌閼烘帡鍩�椤戠姳绠欓崑顕呭晹閸忕喆鍎嶉埗鈺佷壕閼规瑨濮冮柍褜鍏橀敓鑺ョ贩閸忕啔鍐蹭紕娑斿懎浼勯惈鐟板幗閵夊啫浼勯惈鍏夋噰閸嬫捁浼ｉ懘娆愭倕閼烘帡鍩�椤戞繃鍣撮崑顔跨М閸忕喆鍎嶉崑顕呭毇閸嬵噮鍟旈崗鐕佺亹閳垛晛浜鹃挊纾嬪壒閹哄疇鍓诲Δ鑹板妧闂呭棜鍓规０鍛板壔濠曞繗鍓归懕褑鍓瑰Δ鑹板壔婵炲嫯鍔冮柍銉︻仾閸嬵噮鐏愰崗鐕佺亹閸嬵喚鏌曢埗鈺佷壕閽樼鍓绘繛鍕壒妞圭鍓规惔鎰壔閻愬鍓规す纾嬪壒闂勶拷 */
+#cf_layer{
+	display: none;
+}
+#cf_imgdiv{
+	display: none;
+}
+
+.imgModelContent {
+    position: absolute;
+    z-index: 99;
+    background: #fff;
+    width: 100%;
+    height: 5rem;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    padding: 0.1rem;
+}
+.imgModelContent .imgBox{
+    padding:0.1rem;
+    position:relative;
+    height: 100%;
+    width: 100%;
+}
+.imgModelContent .imgBox img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+span.closeWindow {
+    font-size: 0.3rem;
+    position: absolute;
+    right: 0.1rem;
+    top: 0.05rem;
+    z-index: 999;
+}
+
+@media (min-width: 1200px) {
+
+    div.imgModelContent {
+        width: 70%;
+    }
+}
+button.button-download{
+    width: 90%;
+    border: 1px solid #428bca;
+    margin: auto;
+    height: 36px;
+    text-decoration: underline;
+}
+button.button-download:hover{
+    border-color:#428bca;
+}
+.dateListBox{
+    box-shadow: 0 5px 15px rgb(0 0 0 / 50%);
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 6px;
+    outline: 0;
+    width: 60%;
+}
+.model-title{
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 16px;
+    font-weight: bold;
+}
+.button-group{
+    border-top: 1px solid #e5e5e5;
+    padding: 10px 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.button-group button{
+    margin-right:15px;
+    padding:6px 18px;
+}
+.button-group button:last-child{
+     margin-right:0;
+}
+.dateList{
+    padding: 10px 15px;
+}
+/* 閼存瑦绱￠懘婊堟閼存绨遍懘娆忊枌閼烘帡鍩�椤戠姳绠欓崑顕呭晹閸忕喆鍎嶉埗鈺佷壕閼规瑨濮冮柍褜鍏橀敓鑺ョ贩閸忕啔鍐蹭紕娑斿懎浼勯惈鐟板幗閵夊啫浼勯惈鍏夋噰閸嬫捁浼ｉ懘娆愭倕閼烘帡鍩�椤戞繃鍣撮崑顔跨М閸忕喆鍎嶉崑顕呭毇閸嬵噮鍟旈崗鐕佺亹閳垛晛浜鹃挊纾嬪壒閹哄疇鍓诲Δ鑹板妧闂呭棜鍓规０鍛板壔濠曞繗鍓归懕褑鍓瑰Δ鑹板壔濡よ壈濮冮柍褜鍎╅幊濠備紕椤�冲幗椤�充紕鐟佷礁浼勯…瀣幗閳圭喎浼勫婵冩噰閸嬫挻骞婇懘娆戝�濋懘妤呪攼閼存妾� */

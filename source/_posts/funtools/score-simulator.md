@@ -82,7 +82,7 @@ tags: [Fun]
     <input id="loginTitle3Input" type="text" style="width:100%;">
   </div>
 <div style="margin-bottom:10px;">
-    <label>座位号：</label>
+    <label>座位号(为空则可为任意值)：</label>
     <input id="loginPlaceInput" type="text" style="width:100%;">
   </div>
     <div style="margin-top:20px;">
@@ -178,7 +178,7 @@ input:focus {
   function loadDefaultSubjects() {
     tableBody.innerHTML = "";
     DEFAULT_SUBJECTS.forEach(sub => {
-      tableBody.appendChild(renderRow(sub, "", false));
+      tableBody.appendChild(renderRow(sub, "", true));
     });
   }
 
@@ -186,12 +186,22 @@ input:focus {
   window.addSubjectRow = function() {
     const name = prompt("请输入科目名称：");
     if (name && name.trim()) {
-      tableBody.appendChild(renderRow(name.trim(), "", false));
+      tableBody.appendChild(renderRow(name.trim(), "", true));
     }
   };
 
   // ---------- 从 sessionStorage 加载数据并填充表单 ----------
   function loadFromStorage() {
+    loginTitle1.value = sessionStorage.getItem("__zksim_login_title1") ?? "2026年天津市初中"
+    loginTitle2.value = sessionStorage.getItem("__zksim_login_title2") ?? "学业水平考试"
+    loginTitle3.value = sessionStorage.getItem("__zksim_login_title3") ?? "成绩查询"
+    loginPlace.value = sessionStorage.getItem("__zksim_login_stuplace") ?? ""
+
+    // 填充基础字段
+    title1Input.value = sessionStorage.getItem("__zksim_title1") ?? "2026年天津市初中";
+    title2Input.value = sessionStorage.getItem("__zksim_title2") ?? "学业水平考试成绩查询";
+
+
     const raw = sessionStorage.getItem("__zksim_data");
     if (!raw) {
       // 无数据时，加载默认设置
@@ -216,16 +226,7 @@ input:focus {
       loadDefaultSubjects();
       return;
     }
-    
-    
-    loginTitle1.value = sessionStorage.getItem("__zksim_login_title1") ?? "2026年天津市初中"
-    loginTitle2.value = sessionStorage.getItem("__zksim_login_title2") ?? "学业水平考试"
-    loginTitle3.value = sessionStorage.getItem("__zksim_login_title3") ?? "成绩查询"
-    loginPlace.value = sessionStorage.getItem("__zksim_login_stuplace") ?? ""
 
-    // 填充基础字段
-    title1Input.value = sessionStorage.getItem("__zksim_title1") ?? "2026年天津市初中";
-    title2Input.value = sessionStorage.getItem("__zksim_title2") ?? "学业水平考试成绩查询";
     stuidInput.value = data.stuid || 20260001;
     stunameInput.value = data.stuname || "考生";
 

@@ -7,8 +7,8 @@
     <title>魔丸社考试院查分平台</title>
      
     <link rel="stylesheet" href="./css/logincj.css">  
-    <link rel="stylesheet" href="./css/layer.css">    
-    
+    <link rel="stylesheet" href="./css/layer.css">
+	<script src="./js/qrcode.min.js"></script>
     <script src="./js/jquery.min.js"></script>
     <script src="./js/layer.js"></script>
     <!-- 重写layui弹出窗的宽高 -->
@@ -50,7 +50,8 @@
 						</table>
 					</div>
 					<div class="imgBox">
-						<img src="" alt="" class="imgEwm" id="img">
+						<div id="img" style="display: flex;justify-content: center;align-items: center"></div>
+<!--						<img src="" alt="" class="imgEwm" id="img">-->
 					</div>
 				</div>
 				<div class="infoBox">

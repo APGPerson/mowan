@@ -6,6 +6,18 @@ tags: [Fun]
 
 # 中考成绩模拟器
 
+
+{% note danger %}
+{% label danger @作者声明 %}
+
+我们不对上述内容造成的一切后果负责
+
+本工具仅用于娱乐用途,禁止用于伪造成绩
+{% endnote %}
+
+<!-- more -->
+
+
 <div style="max-width:600px;margin:0 auto;">
   <div style="margin-bottom:10px;">
     <label>主标题：</label>
@@ -59,6 +71,22 @@ tags: [Fun]
   </div>
 </div>
 
+<style>
+input {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  color: #555;
+  outline: none;
+}
+
+input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+</style>
 <script>
 (function() {
   // ---------- 默认科目 ----------
@@ -143,8 +171,8 @@ tags: [Fun]
     const raw = sessionStorage.getItem("data");
     if (!raw) {
       // 无数据时，加载默认设置
-      title1Input.value = "中考成绩查询系统";
-      title2Input.value = "2026年";
+      title1Input.value = "2026年天津市初中";
+      title2Input.value = "学业水平考试成绩查询";
       stuidInput.value = "20260001";
       stunameInput.value = "考生";
       reviewOpen = true;
@@ -166,8 +194,8 @@ tags: [Fun]
     }
 
     // 填充基础字段
-    title1Input.value = data.title1 || "中考成绩查询系统";
-    title2Input.value = data.title2 || "2026年";
+    title1Input.value = data.title1 || "2026年天津市初中";
+    title2Input.value = data.title2 || "学业水平考试成绩查询";
     stuidInput.value = data.stuid || 20260001;
     stunameInput.value = data.stuname || "考生";
 
@@ -213,8 +241,8 @@ tags: [Fun]
   // ---------- 收集表单数据并保存到 sessionStorage，然后跳转 ----------
   window.goToResult = function() {
     // 收集基础信息
-    const title1 = title1Input.value.trim() || "中考成绩查询系统";
-    const title2 = title2Input.value.trim() || "2026年";
+    const title1 = title1Input.value.trim() || "2026年天津市初中";
+    const title2 = title2Input.value.trim() || "学业水平考试成绩查询";
     const stuid = parseInt(stuidInput.value, 10) || 20260001;
     const stuname = stunameInput.value.trim() || "考生";
 
@@ -247,6 +275,8 @@ tags: [Fun]
     };
 
     const data = {
+        title1,
+        title2,
       stuid: stuid,
       stuname: stuname,
       score: score,
@@ -273,7 +303,7 @@ tags: [Fun]
   loadFromStorage();
 
   // 如果没有 sessionStorage 数据，也保证主副标题有默认值
-  if (!title1Input.value) title1Input.value = "中考成绩查询系统";
-  if (!title2Input.value) title2Input.value = "2026年";
+  if (!title1Input.value) title1Input.value = "2026年天津市初中";
+  if (!title2Input.value) title2Input.value = "学业水平考试成绩查询";
 })();
 </script>

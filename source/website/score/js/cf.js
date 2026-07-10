@@ -30,6 +30,29 @@ function getExam(examdm){
 	$("#sysTitle2").text(params.get("title2") ?? "");
 }
 
+function randomString(length, chars) {
+	var result = '';
+	for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+	return result;
+}
+
+// 作者：youthcity
+// 链接：https://juejin.cn/post/6844903665522704398
+// 	来源：稀土掘金
+// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+function genQR(data){
+	var qrcode = new QRCode(document.getElementById('img'), {
+		text: randomString(500, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'),
+		width: window.innerWidth / 2,
+		height: window.innerWidth / 2,
+		colorDark : "#000000",
+		colorLight : "#ffffff",
+		version: 7,
+		correctLevel : QRCode.CorrectLevel.H
+	});
+}
 
 function getStuFs(){
 	let data = sessionStorage.getItem("data") // 使用来自sessonStorage的数据而不是URL Param避免XSS注入被利用(其由用户自行设置)
@@ -56,7 +79,7 @@ function getStuFs(){
 
 	// 有成绩项目
 	if(data.score){
-		// document.getElementById('img').src = genQR(data.score);
+		genQR(data.score);
 		let append_html = ""
 		for (const [name,score] of Object.entries(data.score)){
 			append_html += '<tr>';

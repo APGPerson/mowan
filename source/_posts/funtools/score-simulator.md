@@ -29,7 +29,7 @@ tags: [Fun]
   </div>
   <div style="margin-bottom:10px;">
     <label>考生号：</label>
-    <input id="stuidInput" type="number" style="width:100%;">
+    <input id="stuidInput" type="text" style="width:100%;">
   </div>
   <div style="margin-bottom:10px;">
     <label>姓名：</label>
@@ -68,6 +68,25 @@ tags: [Fun]
 
   <div style="margin-top:20px;">
     <button onclick="goToResult()" style="font-size:1.2em; padding:8px 30px;">前往</button>
+  </div>
+    <div style="margin-bottom:10px;">
+    <label>登录页标题1：</label>
+    <input id="loginTitle1Input" type="text" style="width:100%;">
+  </div>
+<div style="margin-bottom:10px;">
+    <label>登录页标题2：</label>
+    <input id="loginTitle2Input" type="text" style="width:100%;">
+  </div>
+<div style="margin-bottom:10px;">
+    <label>登录页标题3：</label>
+    <input id="loginTitle3Input" type="text" style="width:100%;">
+  </div>
+<div style="margin-bottom:10px;">
+    <label>座位号：</label>
+    <input id="loginPlaceInput" type="text" style="width:100%;">
+  </div>
+    <div style="margin-top:20px;">
+    <button onclick="goToLogin()" style="font-size:1.2em; padding:8px 30px;">前往登录页</button>
   </div>
 </div>
 
@@ -108,6 +127,11 @@ input:focus {
   const reviewStartInput = document.getElementById("reviewStart");
   const reviewEndInput = document.getElementById("reviewEnd");
   const tableBody = document.querySelector("#subjectTable tbody");
+
+    const loginTitle1 = document.getElementById("loginTitle1Input")
+    const loginTitle2 = document.getElementById("loginTitle2Input")
+    const loginTitle3 = document.getElementById("loginTitle3Input")
+    const loginPlace = document.getElementById("loginPlaceInput")
 
   // 内部状态
   let reviewOpen = true;
@@ -168,7 +192,7 @@ input:focus {
 
   // ---------- 从 sessionStorage 加载数据并填充表单 ----------
   function loadFromStorage() {
-    const raw = sessionStorage.getItem("data");
+    const raw = sessionStorage.getItem("__zksim_data");
     if (!raw) {
       // 无数据时，加载默认设置
       title1Input.value = "2026年天津市初中";
@@ -192,10 +216,16 @@ input:focus {
       loadDefaultSubjects();
       return;
     }
+    
+    
+    loginTitle1.value = sessionStorage.getItem("__zksim_login_title1") ?? "2026年天津市初中"
+    loginTitle2.value = sessionStorage.getItem("__zksim_login_title2") ?? "学业水平考试"
+    loginTitle3.value = sessionStorage.getItem("__zksim_login_title3") ?? "成绩查询"
+    loginPlace.value = sessionStorage.getItem("__zksim_login_stuplace") ?? ""
 
     // 填充基础字段
-    title1Input.value = data.title1 || "2026年天津市初中";
-    title2Input.value = data.title2 || "学业水平考试成绩查询";
+    title1Input.value = sessionStorage.getItem("__zksim_title1") ?? "2026年天津市初中";
+    title2Input.value = sessionStorage.getItem("__zksim_title2") ?? "学业水平考试成绩查询";
     stuidInput.value = data.stuid || 20260001;
     stunameInput.value = data.stuname || "考生";
 
@@ -239,7 +269,7 @@ input:focus {
   }
 
   // ---------- 收集表单数据并保存到 sessionStorage，然后跳转 ----------
-  window.goToResult = function() {
+  window.goTo = function(isResult) {
     // 收集基础信息
     const title1 = title1Input.value.trim() || "2026年天津市初中";
     const title2 = title2Input.value.trim() || "学业水平考试成绩查询";
@@ -275,8 +305,6 @@ input:focus {
     };
 
     const data = {
-        title1,
-        title2,
       stuid: stuid,
       stuname: stuname,
       score: score,
@@ -285,13 +313,31 @@ input:focus {
 
     // 也可将标题暂存到 sessionStorage，但这里只按要求存储 data
     // 为了方便目标页获取标题，也可额外存储，但通过 URL 传参更可靠。
-    sessionStorage.setItem("data", JSON.stringify(data));
+    sessionStorage.setItem("__zksim_data", JSON.stringify(data));
+    sessionStorage.setItem("__zksim_title1",title1)    
+    sessionStorage.setItem("__zksim_title2",title2)
+    
 
+    sessionStorage.setItem("__zksim_login_title1",loginTitle1.value || "2026年天津市初中");
+    sessionStorage.setItem("__zksim_login_title2",loginTitle2.value || "学业水平考试");
+    sessionStorage.setItem("__zksim_login_title3",loginTitle3.value || "成绩查询");
+    sessionStorage.setItem("__zksim_login_stuid",stuid)
+    sessionStorage.setItem("__zksim_login_stuplace",loginPlace.value.trim() || "")
+
+    let targetUrl = `/website/score/login.html`;
     // 跳转
-    const targetUrl = `/website/score/cfzk.html?title1=${encodeURIComponent(title1)}&title2=${encodeURIComponent(title2)}`;
+    if(isResult){
+        targetUrl = `/website/score/cfzk.html`;
+    }
+    
     window.location.href = targetUrl;
   };
-
+    window.goToResult = () => {
+        window.goTo(true)
+}
+window.goToLogin = () => {
+    window.goTo(false)
+}
   // 辅助函数：转义 HTML
   function escapeHtml(str) {
     const div = document.createElement("div");

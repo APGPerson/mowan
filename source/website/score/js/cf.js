@@ -4,8 +4,7 @@ const params = new URL(document.location).searchParams;
 
 $(document).ready(function(){
 	changeSize();
-	var examdm = sessionStorage.getItem("commonlogin_examdm");
-	getExam(examdm);
+	getExam();
 	initForm();
 });
 
@@ -22,12 +21,12 @@ function initForm(){
 }
 
 //获取（经过登录后跳转到主功能界面上）的系统标题
-function getExam(examdm){
+function getExam(){
 	const diwen = "diwen.png" // 硬编码背景图
 	$(".container")[0].style = 'background: url(./images/'+diwen+');background-size: contain;';
 
-	$("#sysTitle1").text(params.get("title1") ?? "默认标题");
-	$("#sysTitle2").text(params.get("title2") ?? "");
+	$("#sysTitle1").text(sessionStorage.getItem("__zksim_title1") ?? "默认标题");
+	$("#sysTitle2").text(sessionStorage.getItem("__zksim_title2") ?? "");
 }
 
 function randomString(length, chars) {
@@ -55,7 +54,7 @@ function genQR(data){
 }
 
 function getStuFs(){
-	let data = sessionStorage.getItem("data") // 使用来自sessonStorage的数据而不是URL Param避免XSS注入被利用(其由用户自行设置)
+	let data = sessionStorage.getItem("__zksim_data") // 使用来自sessonStorage的数据而不是URL Param避免XSS注入被利用(其由用户自行设置)
 	try{
 		if (data === null){
 			throw new Error
@@ -122,6 +121,11 @@ function getStuFs(){
 
 function fuheshenqing(){
 	// 禁用复核功能
+	layer.open({
+		type: 0,
+		content: "复核已禁用",
+		btn: ['OK'],
+	});
 }
 
 function showImg(path){
@@ -139,10 +143,7 @@ function hideImg(){
 	$('#cf_layer').hide();
 	$('#cf_imgdiv').hide();
 }
-function replacepos(text,start,stop,replacetext){
-    mystr = text.substring(0,start-1)+replacetext+text.substring(stop+1);
-    return mystr;
-}
+
 function addEventListener(){
 	$('#cf_layer').on('click' ,hideImg);
 	$('#cf_close').on('click' ,hideImg);

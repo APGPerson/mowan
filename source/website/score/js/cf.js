@@ -77,12 +77,12 @@ function getStuFs(){
 	$("#xm").text(data.stuname ?? "未知");
 
 	// 有成绩项目
-	if(data.score){
+	if(data.score && Array.isArray(data.score)){
 		genQR(data.score);
 		let append_html = ""
-		for (const [name,score] of Object.entries(data.score)){
+		for (const [name,score] of data.score){
 			append_html += '<tr>';
-			if(typeof(score) === 'number'){
+			if(score !== false){
 				append_html += '<td><span>'+trim(name)+'</span></td><td><span>'+score+'</span></td>';
 			}else{
 				append_html += '<td><span>'+trim(name)+'</span></td><td><span>复核中</span></td>'

@@ -15,6 +15,12 @@ tags: [Fun]
 本工具仅用于娱乐用途,禁止用于伪造成绩
 {% endnote %}
 
+{% note info %}
+{% label info @侵权声明 %}
+
+若本工具对您构成了侵权,请通过域名登记邮箱联系我
+{% endnote %}
+
 <!-- more -->
 
 
@@ -88,6 +94,10 @@ tags: [Fun]
     <div style="margin-top:20px;">
     <button onclick="goToLogin()" style="font-size:1.2em; padding:8px 30px;">前往登录页</button>
   </div>
+    </div>
+    <div style="margin-top:20px;">
+    <button onclick="reset()" style="font-size:1.2em; padding:8px 30px;">重置数据</button>
+  </div>
 </div>
 
 <style>
@@ -105,14 +115,61 @@ input:focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
+button {
+  --green: #1BFD9C;
+  font-size: 15px;
+  padding: 0.7em 2.7em;
+  position: relative;
+  font-family: inherit;
+  border-radius: 0.6em;
+  overflow: hidden;
+  transition: all 0.3s;
+  line-height: 1.4em;
+  border: 2px solid var(--green);
+  background: linear-gradient(to right, rgba(27, 253, 156, 0.1) 1%, transparent 40%,transparent 60% , rgba(27, 253, 156, 0.1) 100%);
+  color: var(--green);
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 156, 0.1);
+}
+
+button:hover {
+  color: #82ffc9;
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.6), 0 0 9px 3px rgba(27, 253, 156, 0.2);
+}
+
+button:before {
+  content: "";
+  position: absolute;
+  left: -4em;
+  width: 4em;
+  height: 100%;
+  top: 0;
+  transition: transform .4s ease-in-out;
+  background: linear-gradient(to right, transparent 1%, rgba(27, 253, 156, 0.1) 40%,rgba(27, 253, 156, 0.1) 60% , transparent 100%);
+}
+
+button:hover:before {
+  transform: translateX(15em);
+}
+
+/* From UIVerse https://uiverse.io/adamgiebl/ugly-robin-41 */
+
 </style>
 <script>
 (function() {
+    // ----- 常量 ---------
+    const LOGINTITLE1_DEFAULT = "2026年天津市初中"
+    const LOGINTITLE2_DEFAULT = "学业水平考试"
+    const LOGINTITLE3_DEFAULT = "成绩查询"
+    const LOGINPLACE_DEFAULT = ""
+    const TITLE1_DEFAULT = "2026年天津市初中"
+    const TITLE2_DEFAULT = "学业水平考试成绩查询"
+    const STUID_DEFAULT = "20260001"
+    const STUNAME_DEFAULT = "考生"
   // ---------- 默认科目 ----------
   const DEFAULT_SUBJECTS = [
-    "语文", "数学", "外语", "化学", "物理",
-    "道德与法治", "历史", "体育平时", "体育测试",
-    "加分", "地理", "生物学", "总分"
+    ["语文",120], ["数学",120], ["外语",120], ["化学",100], ["物理",100],
+    ["道德与法治",100], ["历史",100], ["体育平时",18], ["体育测试",22],
+    ["加分",5], ["地理","优秀"], ["生物学","优秀"], ["总分",805]
   ];
 
   // ---------- DOM 元素 ----------
@@ -137,6 +194,19 @@ input:focus {
   let reviewOpen = true;
   let reviewed = false;
 
+    window.reset = () => {
+        sessionStorage.removeItem("__zksim_data")
+        sessionStorage.removeItem("__zksim_login_stuid")
+sessionStorage.removeItem("__zksim_login_stuplace")
+sessionStorage.removeItem("__zksim_login_title1")
+sessionStorage.removeItem("__zksim_login_title2")
+sessionStorage.removeItem("__zksim_login_title3")
+sessionStorage.removeItem("__zksim_title1")
+sessionStorage.removeItem("__zksim_title2")
+location.reload()
+}
+
+
   // ---------- 切换按钮逻辑 ----------
   openReviewBtn.addEventListener("click", () => {
     reviewOpen = !reviewOpen;
@@ -150,12 +220,12 @@ input:focus {
 
   // ---------- 表格行管理 ----------
   // 每一行数据结构：{ subjectName, scoreValue (字符串), underReview (bool) }
-  function renderRow(subject, scoreVal = "", underReview = false) {
+  function renderRow(subject, scoreVal = "") {
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${escapeHtml(subject)}</td>
-      <td><input type="number" class="score-input" value="${escapeHtml(scoreVal)}" ${underReview ? 'disabled' : ''}></td>
-      <td><input type="checkbox" class="review-checkbox" ${underReview ? 'checked' : ''}></td>
+      <td><input type="text" class="score-input" value="${escapeHtml(scoreVal)}" ${scoreVal === "" ? 'disabled' : ''}></td>
+      <td><input type="checkbox" class="review-checkbox" ${scoreVal === "" ? 'checked' : ''}></td>
       <td><button class="delete-btn">删除</button></td>
     `;
 
@@ -177,8 +247,8 @@ input:focus {
   // 清空表格并重新填充默认科目
   function loadDefaultSubjects() {
     tableBody.innerHTML = "";
-    DEFAULT_SUBJECTS.forEach(sub => {
-      tableBody.appendChild(renderRow(sub, "", true));
+    DEFAULT_SUBJECTS.forEach(([sub,score]) => {
+      tableBody.appendChild(renderRow(sub, score));
     });
   }
 
@@ -186,29 +256,27 @@ input:focus {
   window.addSubjectRow = function() {
     const name = prompt("请输入科目名称：");
     if (name && name.trim()) {
-      tableBody.appendChild(renderRow(name.trim(), "", true));
+      tableBody.appendChild(renderRow(name.trim(), ""));
     }
   };
 
   // ---------- 从 sessionStorage 加载数据并填充表单 ----------
   function loadFromStorage() {
-    loginTitle1.value = sessionStorage.getItem("__zksim_login_title1") ?? "2026年天津市初中"
-    loginTitle2.value = sessionStorage.getItem("__zksim_login_title2") ?? "学业水平考试"
-    loginTitle3.value = sessionStorage.getItem("__zksim_login_title3") ?? "成绩查询"
-    loginPlace.value = sessionStorage.getItem("__zksim_login_stuplace") ?? ""
+    loginTitle1.value = sessionStorage.getItem("__zksim_login_title1") ?? LOGINTITLE1_DEFAULT
+    loginTitle2.value = sessionStorage.getItem("__zksim_login_title2") ?? LOGINTITLE2_DEFAULT
+    loginTitle3.value = sessionStorage.getItem("__zksim_login_title3") ?? LOGINTITLE3_DEFAULT
+    loginPlace.value = sessionStorage.getItem("__zksim_login_stuplace") ?? LOGINPLACE_DEFAULT
 
     // 填充基础字段
-    title1Input.value = sessionStorage.getItem("__zksim_title1") ?? "2026年天津市初中";
-    title2Input.value = sessionStorage.getItem("__zksim_title2") ?? "学业水平考试成绩查询";
+    title1Input.value = sessionStorage.getItem("__zksim_title1") ?? TITLE1_DEFAULT;
+    title2Input.value = sessionStorage.getItem("__zksim_title2") ?? TITLE2_DEFAULT;
 
 
     const raw = sessionStorage.getItem("__zksim_data");
     if (!raw) {
       // 无数据时，加载默认设置
-      title1Input.value = "2026年天津市初中";
-      title2Input.value = "学业水平考试成绩查询";
-      stuidInput.value = "20260001";
-      stunameInput.value = "考生";
+      stuidInput.value = STUID_DEFAULT;
+      stunameInput.value = STUNAME_DEFAULT;
       reviewOpen = true;
       reviewed = false;
       openReviewText.textContent = "是";
@@ -227,8 +295,8 @@ input:focus {
       return;
     }
 
-    stuidInput.value = data.stuid || 20260001;
-    stunameInput.value = data.stuname || "考生";
+    stuidInput.value = data.stuid || STUID_DEFAULT;
+    stunameInput.value = data.stuname || STUNAME_DEFAULT;
 
     // review 状态
     if (data.review) {
@@ -255,16 +323,13 @@ input:focus {
     // 遍历 score 中的每个科目生成行
     for (const [subj, val] of Object.entries(scoreData)) {
       let scoreStr = "";
-      let underReview = false;
       if (typeof val === "number" && Number.isInteger(val)) {
         scoreStr = val.toString();
-        underReview = false;
       } else {
         // false 或其它一律视为复核中
         scoreStr = "";
-        underReview = true;
       }
-      const row = renderRow(subj, scoreStr, underReview);
+      const row = renderRow(subj, scoreStr);
       tableBody.appendChild(row);
     }
   }
@@ -272,13 +337,13 @@ input:focus {
   // ---------- 收集表单数据并保存到 sessionStorage，然后跳转 ----------
   window.goTo = function(isResult) {
     // 收集基础信息
-    const title1 = title1Input.value.trim() || "2026年天津市初中";
-    const title2 = title2Input.value.trim() || "学业水平考试成绩查询";
-    const stuid = parseInt(stuidInput.value, 10) || 20260001;
-    const stuname = stunameInput.value.trim() || "考生";
+    const title1 = title1Input.value.trim() || TITLE1_DEFAULT;
+    const title2 = title2Input.value.trim() || TITLE2_DEFAULT;
+    const stuid = parseInt(stuidInput.value, 10) || STUID_DEFAULT;
+    const stuname = stunameInput.value.trim() || STUNAME_DEFAULT;
 
     // 构建 score 对象
-    const score = {};
+    const score = new Array;
     const rows = tableBody.querySelectorAll("tr");
     rows.forEach(row => {
       const cells = row.querySelectorAll("td");
@@ -290,10 +355,9 @@ input:focus {
 
       const isUnderReview = reviewCheckbox.checked;
       if (isUnderReview) {
-        score[subjectName] = false;
+        score.push([subjectName,false])
       } else {
-        const val = parseInt(scoreInput.value, 10);
-        score[subjectName] = (Number.isInteger(val) && !isNaN(val)) ? val : false;
+        score.push([subjectName,scoreInput.value])
       }
     });
 
@@ -319,11 +383,11 @@ input:focus {
     sessionStorage.setItem("__zksim_title2",title2)
     
 
-    sessionStorage.setItem("__zksim_login_title1",loginTitle1.value || "2026年天津市初中");
-    sessionStorage.setItem("__zksim_login_title2",loginTitle2.value || "学业水平考试");
-    sessionStorage.setItem("__zksim_login_title3",loginTitle3.value || "成绩查询");
+    sessionStorage.setItem("__zksim_login_title1",loginTitle1.value || LOGINTITLE1_DEFAULT);
+    sessionStorage.setItem("__zksim_login_title2",loginTitle2.value || LOGINTITLE2_DEFAULT);
+    sessionStorage.setItem("__zksim_login_title3",loginTitle3.value || LOGINTITLE3_DEFAULT);
     sessionStorage.setItem("__zksim_login_stuid",stuid)
-    sessionStorage.setItem("__zksim_login_stuplace",loginPlace.value.trim() || "")
+    sessionStorage.setItem("__zksim_login_stuplace",loginPlace.value.trim() || LOGINPLACE_DEFAULT)
 
     let targetUrl = `/website/score/login.html`;
     // 跳转
@@ -350,7 +414,35 @@ window.goToLogin = () => {
   loadFromStorage();
 
   // 如果没有 sessionStorage 数据，也保证主副标题有默认值
-  if (!title1Input.value) title1Input.value = "2026年天津市初中";
-  if (!title2Input.value) title2Input.value = "学业水平考试成绩查询";
+  if (!title1Input.value) title1Input.value = TITLE1_DEFAULT;
+  if (!title2Input.value) title2Input.value = TITLE2_DEFAULT;
 })();
+
 </script>
+
+{% fold info @组件开源协议 %}
+# BUTTON
+
+Copyright - 2026 adamgiebl (Adam Giebl)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+# INPUT
+
+Copyright - 2026 JayRamoliya (Jay Ramoliya)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+
+{% endfold %}

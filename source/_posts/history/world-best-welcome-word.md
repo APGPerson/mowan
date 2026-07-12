@@ -1,5 +1,5 @@
 ---
-title: 魔丸社入社欢迎词
+title: JOIN魔丸社
 date: 2026/4/18 21:34
 categories: [重大事件]
 tags: [重大事件]
@@ -7,6 +7,10 @@ copyright: BY-NC-SA
 author: Mowan Official
 sticky: 1000
 ---
+
+# 扫描二维码以加入
+
+![QRCode](/img/wechat.jpg)
 
 # 史上最牛逼的欢迎词
 

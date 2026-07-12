@@ -1,11 +1,13 @@
 ---
 title: 中考成绩模拟器
 date: 2026-07-09 13:34:04
-tags: [Fun]
+tags: [工具]
+categories: [工具]
+copyright: BY-NC-SA
+author: APG
 ---
 
 # 中考成绩模拟器
-
 
 {% note danger %}
 {% label danger @作者声明 %}
@@ -25,6 +27,11 @@ tags: [Fun]
 
 
 <div style="max-width:600px;margin:0 auto;">
+    <h3>持久数据储存,数据会自动加载</h3>
+  <div style="margin-top:20px;">
+    <button onclick="saveData()" style="font-size:1.2em; padding:8px 30px;">保存数据</button>
+    <button onclick="deleteData()" style="font-size:1.2em; padding:8px 30px;">删除数据</button>
+  </div>
   <div style="margin-bottom:10px;">
     <label>主标题：</label>
     <input id="title1Input" type="text" placeholder="例如：中考成绩查询系统" style="width:100%;">
@@ -94,9 +101,8 @@ tags: [Fun]
     <div style="margin-top:20px;">
     <button onclick="goToLogin()" style="font-size:1.2em; padding:8px 30px;">前往登录页</button>
   </div>
-    </div>
     <div style="margin-top:20px;">
-    <button onclick="reset()" style="font-size:1.2em; padding:8px 30px;">重置数据</button>
+    <button onclick="reset()" style="font-size:1.2em; padding:8px 30px;">恢复到默认值</button>
   </div>
 </div>
 
@@ -185,10 +191,10 @@ button:hover:before {
   const reviewEndInput = document.getElementById("reviewEnd");
   const tableBody = document.querySelector("#subjectTable tbody");
 
-    const loginTitle1 = document.getElementById("loginTitle1Input")
-    const loginTitle2 = document.getElementById("loginTitle2Input")
-    const loginTitle3 = document.getElementById("loginTitle3Input")
-    const loginPlace = document.getElementById("loginPlaceInput")
+  const loginTitle1 = document.getElementById("loginTitle1Input")
+  const loginTitle2 = document.getElementById("loginTitle2Input")
+  const loginTitle3 = document.getElementById("loginTitle3Input")
+  const loginPlace = document.getElementById("loginPlaceInput")
 
   // 内部状态
   let reviewOpen = true;
@@ -206,6 +212,76 @@ sessionStorage.removeItem("__zksim_title2")
 location.reload()
 }
 
+// Try to move,if not have will do nothing
+function moveLocalToSession(key){
+    if(localStorage.getItem(key)){
+        sessionStorage.setItem(key,localStorage.getItem(key))
+    }
+}
+
+window.deleteData = () => {
+    localStorage.removeItem("__zksim_data")
+localStorage.removeItem("__zksim_login_stuid")
+localStorage.removeItem("__zksim_login_stuplace")
+localStorage.removeItem("__zksim_login_title1")
+localStorage.removeItem("__zksim_login_title2")
+localStorage.removeItem("__zksim_login_title3")
+localStorage.removeItem("__zksim_title1")
+localStorage.removeItem("__zksim_title2")
+}
+
+window.saveData = () => {
+    // 收集基础信息
+    const title1 = title1Input.value.trim() || TITLE1_DEFAULT;
+    const title2 = title2Input.value.trim() || TITLE2_DEFAULT;
+    const stuid = stuidInput.value.trim() || STUID_DEFAULT;
+    const stuname = stunameInput.value.trim() || STUNAME_DEFAULT;
+
+    // 构建 score 对象
+    const score = new Array;
+    const rows = tableBody.querySelectorAll("tr");
+    rows.forEach(row => {
+      const cells = row.querySelectorAll("td");
+      if (cells.length < 4) return;
+      const subjectName = cells[0].textContent.trim();
+      const scoreInput = cells[1].querySelector("input");
+      const reviewCheckbox = cells[2].querySelector("input[type='checkbox']");
+      if (!subjectName || !scoreInput || !reviewCheckbox) return;
+
+      const isUnderReview = reviewCheckbox.checked;
+      if (isUnderReview) {
+        score.push([subjectName,false])
+      } else {
+        score.push([subjectName,scoreInput.value])
+      }
+    });
+
+    // 构建 review 对象
+    const review = {
+      open: reviewOpen,
+      reviewed: reviewed,
+      startTime: reviewStartInput.value,
+      endTime: reviewEndInput.value
+    };
+
+    const data = {
+      stuid: stuid,
+      stuname: stuname,
+      score: score,
+      review: review
+    };
+
+    // 也可将标题暂存到 sessionStorage，但这里只按要求存储 data
+    // 为了方便目标页获取标题，也可额外存储，但通过 URL 传参更可靠。
+    localStorage.setItem("__zksim_data", JSON.stringify(data));
+    localStorage.setItem("__zksim_title1",title1)    
+    localStorage.setItem("__zksim_title2",title2)
+    localStorage.setItem("__zksim_login_title1",loginTitle1.value || LOGINTITLE1_DEFAULT);
+    localStorage.setItem("__zksim_login_title2",loginTitle2.value || LOGINTITLE2_DEFAULT);
+    localStorage.setItem("__zksim_login_title3",loginTitle3.value || LOGINTITLE3_DEFAULT);
+    localStorage.setItem("__zksim_login_stuid",stuid)
+    localStorage.setItem("__zksim_login_stuplace",loginPlace.value.trim() || LOGINPLACE_DEFAULT)
+}
 
   // ---------- 切换按钮逻辑 ----------
   openReviewBtn.addEventListener("click", () => {
@@ -313,21 +389,18 @@ location.reload()
 
     // 填充成绩表格
     tableBody.innerHTML = "";
-    const scoreData = data.score || {};
-    // 如果 score 中没有保存科目，则按默认科目填充（值设为 false）
-    if (Object.keys(scoreData).length === 0) {
+    const scoreData = data.score || [];
+    // 如果 score 不是list
+    if (!Array.isArray(scoreData)) {
       loadDefaultSubjects();
       return;
     }
 
     // 遍历 score 中的每个科目生成行
-    for (const [subj, val] of Object.entries(scoreData)) {
+    for (const [subj, val] of scoreData) {
       let scoreStr = "";
-      if (typeof val === "number" && Number.isInteger(val)) {
-        scoreStr = val.toString();
-      } else {
-        // false 或其它一律视为复核中
-        scoreStr = "";
+      if (val !== false) {
+        scoreStr = val
       }
       const row = renderRow(subj, scoreStr);
       tableBody.appendChild(row);
@@ -339,7 +412,7 @@ location.reload()
     // 收集基础信息
     const title1 = title1Input.value.trim() || TITLE1_DEFAULT;
     const title2 = title2Input.value.trim() || TITLE2_DEFAULT;
-    const stuid = parseInt(stuidInput.value, 10) || STUID_DEFAULT;
+    const stuid = stuidInput.value.trim() || STUID_DEFAULT;
     const stuname = stunameInput.value.trim() || STUNAME_DEFAULT;
 
     // 构建 score 对象
@@ -381,8 +454,6 @@ location.reload()
     sessionStorage.setItem("__zksim_data", JSON.stringify(data));
     sessionStorage.setItem("__zksim_title1",title1)    
     sessionStorage.setItem("__zksim_title2",title2)
-    
-
     sessionStorage.setItem("__zksim_login_title1",loginTitle1.value || LOGINTITLE1_DEFAULT);
     sessionStorage.setItem("__zksim_login_title2",loginTitle2.value || LOGINTITLE2_DEFAULT);
     sessionStorage.setItem("__zksim_login_title3",loginTitle3.value || LOGINTITLE3_DEFAULT);
@@ -409,6 +480,15 @@ window.goToLogin = () => {
     div.textContent = str;
     return div.innerHTML;
   }
+    moveLocalToSession("__zksim_data")
+moveLocalToSession("__zksim_login_stuid")
+moveLocalToSession("__zksim_login_stuplace")
+moveLocalToSession("__zksim_login_title1")
+moveLocalToSession("__zksim_login_title2")
+moveLocalToSession("__zksim_login_title3")
+moveLocalToSession("__zksim_title1")
+moveLocalToSession("__zksim_title2")
+
 
   // 页面加载时填充表单
   loadFromStorage();
@@ -421,28 +501,43 @@ window.goToLogin = () => {
 </script>
 
 {% fold info @组件开源协议 %}
+
 # BUTTON
 
 Copyright - 2026 adamgiebl (Adam Giebl)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 # INPUT
 
 Copyright - 2026 JayRamoliya (Jay Ramoliya)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
+# Website
 
-
+Copyright - 2026 TAEA
 {% endfold %}

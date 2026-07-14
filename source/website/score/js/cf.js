@@ -1,5 +1,6 @@
 //ready
 
+
 const params = new URL(document.location).searchParams;
 
 $(document).ready(function(){
@@ -13,6 +14,8 @@ $(window).resize(function () {
     changeSize();
 })
 
+
+
 function initForm(){
 	//查分
 	getStuFs();
@@ -22,7 +25,7 @@ function initForm(){
 
 //获取（经过登录后跳转到主功能界面上）的系统标题
 function getExam(){
-	const diwen = "diwen.png" // 硬编码背景图
+	const diwen = "diwen_2.png" // 硬编码背景图
 	$(".container")[0].style = 'background: url(./images/'+diwen+');background-size: contain;';
 
 	$("#sysTitle1").text(sessionStorage.getItem("__zksim_title1") ?? "默认标题");
@@ -42,10 +45,12 @@ function randomString(length, chars) {
 
 
 function genQR(data){
-	var qrcode = new QRCode(document.getElementById('img'), {
+	const container_width = $("#container")[0].getBoundingClientRect().width / 2
+	console.log(`QRWidth: ${container_width}`)
+	now_qr = new QRCode(document.getElementById('img'), {
 		text: randomString(500, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'),
-		width: window.innerWidth / 2,
-		height: window.innerWidth / 2,
+		width: container_width,
+		height: container_width,
 		colorDark : "#000000",
 		colorLight : "#ffffff",
 		version: 7,

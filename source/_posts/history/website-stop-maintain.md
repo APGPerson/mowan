@@ -21,7 +21,7 @@ stick: 1000
 
 {% endnote %}
 
-如需接手开发,请查看[Github](https://github.com/APGPerson)并自行fork
+如需接手开发,请查看[Github](https://github.com/APGPerson/mowan)并自行fork
 
 网址**zhanglianying.top**预计在2027年3月份到期
 

@@ -5,6 +5,7 @@ categories: [重大事件]
 tags: [重大事件]
 copyright: BY-NC-SA
 author: Mowan Official
+archive: true
 ---
 魔丸社社员数目突破200
 

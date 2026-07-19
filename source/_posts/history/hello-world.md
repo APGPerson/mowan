@@ -7,6 +7,7 @@ copyright: BY-NC-SA
 author: Mowan Official
 index_img: /img/icon.jpg
 banner_img: /img/icon.jpg
+archive: true
 ---
 魔丸社正式成立
 

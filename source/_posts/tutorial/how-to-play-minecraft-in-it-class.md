@@ -6,6 +6,7 @@ categories: [教程]
 copyright: BY
 author: Mowan Official
 sticky: 10000
+archive: true
 ---
 {% note danger %}
 {% label danger @作者声明 %}

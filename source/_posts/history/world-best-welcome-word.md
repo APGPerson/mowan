@@ -6,6 +6,7 @@ tags: [重大事件]
 copyright: BY-NC-SA
 author: Mowan Official
 sticky: 1000
+archive: true
 ---
 
 # 扫描二维码以加入

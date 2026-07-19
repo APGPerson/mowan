@@ -5,6 +5,7 @@ tags: [工具]
 categories: [工具]
 copyright: BY-NC-SA
 author: APG
+archive: true
 ---
 
 # 中考成绩模拟器
